@@ -1,0 +1,8 @@
+[package]
+name = "pandoc_filters"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pandoc_types = "0.6.0"
+serde = { version = "1.0.215", features = ["derive"] }
