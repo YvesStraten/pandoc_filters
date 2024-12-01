@@ -25,7 +25,7 @@ pub trait PandocFilter<I> {
 }
 
 
-pub trait Filterer<I> {
+trait Filterer<I> {
     fn add_filter<F: PandocFilter<I>>(&mut self, filter: F);
 
     fn add_filters<F: PandocFilter<I>>(&mut self, filters: Vec<F>);
