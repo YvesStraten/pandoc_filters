@@ -24,14 +24,13 @@ pub trait PandocFilter<I> {
     fn apply(&mut self, item: &mut I);
 }
 
-
 pub trait Filterer<I> {
     fn add_filter<F: PandocFilter<I>>(&mut self, filter: F);
 
     fn add_filters<F: PandocFilter<I>>(&mut self, filters: Vec<F>);
 }
 
-impl Filterer<Inline> for pandoc_types::definition::Pandoc {
+impl Filterer<Inline> for ModifiedPandoc {
     fn add_filter<F: PandocFilter<Inline>>(&mut self, mut filter: F) {
         for block in self.iter_blocks_mut() {
             for inline in block.iter_inlines_mut() {
@@ -47,7 +46,7 @@ impl Filterer<Inline> for pandoc_types::definition::Pandoc {
     }
 }
 
-impl Filterer<Block> for pandoc_types::definition::Pandoc {
+impl Filterer<Block> for ModifiedPandoc {
     fn add_filter<F: PandocFilter<Block>>(&mut self, mut filter: F) {
         for block in self.iter_blocks_mut() {
             filter.apply(block)
