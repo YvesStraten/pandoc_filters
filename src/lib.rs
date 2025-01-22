@@ -1,7 +1,7 @@
 use std::ops::{Deref, DerefMut};
 
 use pandoc_types::definition::{Block, Inline, IterBlocks, IterInlines};
-use serde::{Deserialize, Serialize};
+use serde::{de::Error, Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ModifiedPandoc(pub pandoc_types::definition::Pandoc);
